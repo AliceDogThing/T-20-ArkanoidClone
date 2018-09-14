@@ -24,7 +24,12 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	
+	aRect( Vec2(40.0f, 30.0f), Vec2(340.0f, 450.0f)),
+	bRect(Vec2(500.0f, 500.0f), Vec2(550.0f, 550.0f)),
+	aBrick(aRect, Colors::Red),
+	bBrick(bRect, Colors::Blue)
 {
 }
 
@@ -42,4 +47,6 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	aBrick.Draw(gfx);
+	bBrick.Draw(gfx);
 }

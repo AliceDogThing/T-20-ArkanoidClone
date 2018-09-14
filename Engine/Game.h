@@ -23,6 +23,9 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "RectF.h"
+#include "Vec2.h"
+#include "Brick.h"
 
 class Game
 {
@@ -42,5 +45,9 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	RectF aRect;
+	RectF bRect;
+	Brick aBrick;
+	Brick bBrick;
 	/********************************/
 };
