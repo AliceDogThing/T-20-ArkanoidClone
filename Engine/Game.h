@@ -26,6 +26,8 @@
 #include "RectF.h"
 #include "Vec2.h"
 #include "Brick.h"
+#include "FrameTimer.h"
+#include "Paddle.h"
 
 class Game
 {
@@ -49,5 +51,7 @@ private:
 	RectF bRect;
 	Brick aBrick;
 	Brick bBrick;
+	FrameTimer ft;
+	Paddle paddle;
 	/********************************/
 };

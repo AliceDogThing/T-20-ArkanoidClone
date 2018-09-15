@@ -26,10 +26,11 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	
-	aRect( Vec2(40.0f, 30.0f), Vec2(340.0f, 450.0f)),
-	bRect(Vec2(500.0f, 500.0f), Vec2(550.0f, 550.0f)),
+	aRect( Vec2(40.0f, 30.0f), Vec2(140.0f, 150.0f)),
+	bRect(Vec2(300.0f, 300.0f), Vec2(350.0f, 350.0f)),
 	aBrick(aRect, Colors::Red),
-	bBrick(bRect, Colors::Blue)
+	bBrick(bRect, Colors::Blue),
+	paddle(Vec2(330.0f,500.0f))
 {
 }
 
@@ -43,10 +44,14 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	float dt = ft.Mark();
+	paddle.Update(wnd.kbd, dt, gfx);
+
 }
 
 void Game::ComposeFrame()
 {
 	aBrick.Draw(gfx);
 	bBrick.Draw(gfx);
+	paddle.Draw(gfx);
 }
