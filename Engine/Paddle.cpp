@@ -29,5 +29,10 @@ void Paddle::Update(const Keyboard& kbd, float dt, Graphics& gfx)
 
 void Paddle::Draw(Graphics& gfx)
 {
-	gfx.DrawRect(RectF(topLeft, width, height), c);
+	gfx.DrawRect(GetRect(), c);
+}
+
+RectF Paddle::GetRect()
+{
+	return RectF(topLeft, width, height);
 }

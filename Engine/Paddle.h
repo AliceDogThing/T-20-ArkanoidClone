@@ -12,12 +12,11 @@ public:
 	Paddle() = default;
 	void Update(const Keyboard& kbd, float dt, Graphics& gfx);
 	void Draw(Graphics& gfx);
-
+	RectF GetRect();
 public:
 	Vec2 topLeft;
 	const float width = 70.0f;
 	const float height = 20.0f;
-	RectF rect;
 	Color c = Colors::White;
 	Color wingColor;
 	float speed = 300.0f;
