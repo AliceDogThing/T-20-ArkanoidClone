@@ -26,11 +26,12 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	
-	aRect( Vec2(40.0f, 30.0f), Vec2(140.0f, 150.0f)),
-	bRect(Vec2(300.0f, 300.0f), Vec2(350.0f, 350.0f)),
+	aRect( Vec2(40.0f, 30.0f), Vec2(110.0f, 150.0f)),
+	bRect(Vec2(220.0f, 200.0f), Vec2(300.0f, 300.0f)),
 	aBrick(aRect, Colors::Red),
 	bBrick(bRect, Colors::Blue),
-	paddle(Vec2(330.0f,500.0f))
+	paddle(Vec2(330.0f,500.0f)),
+	ball(Vec2( 200.0f, 270.0f), Vec2(2.0f,-2.0f))
 {
 }
 
@@ -46,7 +47,11 @@ void Game::UpdateModel()
 {
 	float dt = ft.Mark();
 	paddle.Update(wnd.kbd, dt, gfx);
-
+	ball.Update();
+	ball.DoWallCollision(gfx);
+	ball.DoBrickCollision(aBrick);
+	ball.DoBrickCollision(bBrick);
+	ball.DoPaddleCollision(paddle);
 }
 
 void Game::ComposeFrame()
@@ -54,4 +59,5 @@ void Game::ComposeFrame()
 	aBrick.Draw(gfx);
 	bBrick.Draw(gfx);
 	paddle.Draw(gfx);
+	ball.Draw(gfx);
 }
