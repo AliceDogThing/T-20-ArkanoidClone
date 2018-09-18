@@ -56,7 +56,7 @@ void Game::UpdateModel()
 {
 	float dt = ft.Mark();
 	paddle.Update(wnd.kbd, dt, gfx);
-	ball.Update();
+	ball.Update(dt);
 	ball.DoWallCollision(gfx);
 	int brickCount = 0;
 	for (int xCount = 1; xCount < bricksX; xCount++)

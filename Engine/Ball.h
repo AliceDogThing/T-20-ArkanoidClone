@@ -13,7 +13,7 @@ public:
 	Ball() = default;
 	Ball(Vec2 pos_in, Vec2 vel_in);
 
-	void Update();
+	void Update(float dt);
 	void Draw(Graphics& gfx) const;
 	RectF GetRect() const; 
 	void DoPaddleCollision(Paddle& paddle);
@@ -26,5 +26,5 @@ public:
 	Vec2 pos;
 	Vec2 vel;
 	const float dimension = 7.0f;
-	float speed = 2.0f;
+	float speed = 2.0f * 60.0f;
 };
