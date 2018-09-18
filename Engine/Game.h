@@ -51,8 +51,11 @@ private:
 	Ball ball;
 	RectF aRect;
 	RectF bRect;
+	Brick bricks [100];
 	Brick aBrick;
 	Brick bBrick;
+	int bricksX = 9;
+	int bricksY = 7;
 	FrameTimer ft;
 	Paddle paddle;
 	/********************************/
