@@ -7,14 +7,18 @@
 class Brick
 {
 public:
-	Brick(RectF rect_in, Color color_in);
+	Brick(Vec2 pos_in, Color color_in);
 	Brick() = default;
 	void Draw(Graphics& gfx) const;
+	RectF GetRect() const;
+	void Initialize(const Vec2& pos_inn, Color c_in);
 public:
-	RectF rect;
+	Vec2 pos;
 	Color color;
-	bool destroyed;
-
+	bool destroyed = false;
+	float width = 80.0f;
+	float height = 25.0f;
+	float buffer = 2.0f;
 private:
 
 };
