@@ -26,5 +26,5 @@ public:
 	Vec2 pos;
 	Vec2 vel;
 	const float dimension = 7.0f;
-	float speed;
+	float speed = 2.0f;
 };

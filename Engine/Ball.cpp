@@ -3,14 +3,13 @@
 Ball::Ball(Vec2 pos_in, Vec2 vel_in)
 	:
 	pos(pos_in),
-	//Vec2(pos.x - (dimension/2),pos.y - (dimension/2))
 	vel(vel_in)
 {
 }
 
 void Ball::Update()
 {
-	pos += vel;
+	pos += vel * speed;
 }
 
 void Ball::Draw(Graphics & gfx) const
@@ -28,19 +27,20 @@ void Ball::DoPaddleCollision(Paddle & paddle)
 {
 	if (GetRect().CheckCollision(paddle.GetRect()))
 	{
-		if (pos.y + dimension < paddle.GetRect().bottom && pos.y > paddle.GetRect().top)
+		if (pos.y < paddle.GetRect().top)
 		{
-			if (pos.x < paddle.GetRect().right)
-				pos.x = paddle.GetRect().left - dimension;
-			if (pos.x > paddle.GetRect().left)
-				pos.x = paddle.GetRect().right + dimension;
-			ReboundX();
-		}
-		else if (pos.y < paddle.GetRect().top)
-		{
-			//pos.y -= 1;
+			pos.y = paddle.topLeft.y - (2 * dimension);
 			ReboundY();
 		}
+		else if (pos.y + dimension < paddle.GetRect().bottom && pos.y > paddle.GetRect().top)
+		{
+			if (pos.x + dimension < paddle.GetRect().right)
+				pos.x = paddle.GetRect().left - (2*dimension);
+			if (pos.x + dimension > paddle.GetRect().left)
+				pos.x = paddle.GetRect().right + (2 * dimension);
+			ReboundX();
+		}
+		
 	}
 }
 
@@ -50,15 +50,20 @@ void Ball::DoPaddleCollision(Paddle & paddle)
 
 void Ball::DoBrickCollision(Brick & brick)
 {
-	if (GetRect().CheckCollision(brick.rect))
+	if (GetRect().CheckCollision(brick.GetRect()))
 	{
 		brick.destroyed = true;
-		if (pos.y + dimension < brick.rect.bottom && pos.y > brick.rect.top)
+		if (pos.y + dimension < brick.GetRect().bottom && pos.y > brick.GetRect().top)
 		{
 			ReboundX();
 		}
 		else
 		{
+			if (pos.y > brick.GetRect().top) 
+				pos.y += dimension;
+			else if (pos.y + 2*dimension < brick.GetRect().bottom)
+				pos.y -= dimension;
+
 			ReboundY();
 		}
 	}
